@@ -1,0 +1,46 @@
+/**index.wxss**/
+
+.up{
+  display:flex;
+  flex-direction: column; 
+  position:absolute;
+  z-index:10;
+  height : 800rpx;
+  width : 800rpx;
+  align-items: center;
+  margin : 0 0 0 0
+}
+
+.firstline{
+font-weight: 30rpx;
+font-size: 50rpx;
+font-family: "宋体";
+color:blue;
+margin-top:100rpx;
+} 
+
+.button{
+  width: 80%;
+  margin-top: 300rpx;
+  border-radius: 2px; 
+  border: 1px solid white;
+}
+
+.button::after{
+  border: 1px solid white;
+}
+
+.scantext{
+display:flex;
+font-size: 30rpx;
+font-family: "宋体";
+margin-top:30rpx
+}
+
+.background{
+  position: relative;
+  width: 100%;
+  height: 800rpx;
+  z-index: 1;
+}
+
