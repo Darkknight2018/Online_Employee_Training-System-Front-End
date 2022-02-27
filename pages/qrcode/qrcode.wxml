@@ -1,0 +1,11 @@
+<!--pages/responsive/responsive.wxml-->
+<view class='input-wrapper'>
+    <input bindinput='inputHandler' bindconfirm='confirmHandler' placeholder='输入培训课程名称' value='{{text}}'></input>
+</view>
+<view class='button-wrapper'>
+    <button bindtap='tapHandler'>生成二维码</button>
+</view>
+<canvas class='canvas' style="width:{{qrcodeWidth}}px; height:{{qrcodeWidth}}px;" canvas-id='canvas' bindlongtap='save'></canvas>
+
+<!-- image显示 -->
+<view class='tip'>长按保存</view>

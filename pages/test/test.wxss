@@ -6,12 +6,11 @@
   padding: 20rpx;
 }
 .my-choosebox {
-  display: block;
+  display: block; /*块级元素，内容独占一行*/
   margin-bottom: 20rpx;
 }
 .toindex-btn {
   margin-top: 20rpx;
-  display:block;
   line-height:2.3;
   font-size:13px;
   padding:0 1.34em;

@@ -1,7 +1,7 @@
 <view class="container"> 
   <view class="up">
-    <text  class = "firstline">欢迎使用线上培训课后测验系统</text>
-      <button class= "button"  bindtap="click" plain="true">请扫描二维码，进入测验</button>
+    <text  class = "firstline">欢迎使用在线考试系统</text>
+      <button class= "button"  bindtap="click" plain="true">请选择科目，进入测验</button>
   </view>
   <image class = "background" src='../../image/background-scan.jpg'></image>
 </view> 

@@ -1,3 +1,6 @@
 {  
-  "navigationBarTitleText": "欢迎使用线上测验系统"
+  "navigationBarTitleText": "欢迎使用线上测验系统",
+  "usingComponents": {
+    "admin-select": "/components/adminSelect/adminSelect"
+}
 }

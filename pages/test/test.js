@@ -1,38 +1,24 @@
 const util = require('../../utils/util.js')
-var app = getApp();
 
 Page({
   data: {
-    index: 0,  // 题目序列
+    index: 0,  // 题目序号
     chooseValue: [], // 选择的答案序列
     totalScore: 100, // 总分
     bottonText: "下一题", //按钮上的文字
     wrong: 0, // 错误的题目数量
-    wrongList: [], // 错误的题目集合-按乱序后的顺序
-    wrongListSort: [], // 错误的题目集合-按原数据库中的顺序
+    wrongList: [], // 错误的题目集合-按从数据库中取来的顺序
+    wrongListSort: [], // 错误的题目集合-按乱序后的顺序
   },
   onLoad: function (options) {
     console.log(options);
-    wx.setNavigationBarTitle({ title: options.testInfo }) // 动态设置导航条标题
+    wx.setNavigationBarTitle({ title: options.testInfo }) // 动态设置导航条标题  
     
-    var n
     var questionList = wx.getStorageSync('question')
-    var optNames = ['ChoiceA', 'ChoiceB', 'ChoiceC', 'ChoiceD', 'ChoiceE', 'ChoiceF']
-    var alg = ['A', 'B', 'C', 'D', 'E', 'F']
+    console.log(questionList);
+    console.log(typeof(questionList));
     var num = questionList.length; //题目数量
-    
-    //将服务器中的选项数据转换为合适的格式
-    for(let i=0; i < questionList.length; i++){
-      var option = {}
-      for(let each in optNames){
-        var temp = questionList[i][optNames[each]]
-        if(temp){
-          option[alg[each]] = temp
-        }
-      }
-      questionList[i]['option'] = option
-    }
-    
+  
     this.setData({
       questionList: questionList, //测试题目
       testInfo: options.testInfo, // 测试名称
@@ -41,7 +27,7 @@ Page({
 
     let count = this.generateArray(0, num); // 生成题序 
     this.setData({
-      shuffleIndex: this.shuffle(count) // 生成随机题序,并截取10道题 
+      shuffleIndex: this.shuffle(count) // 随机打乱题序
     })
     console.log(this.data.shuffleIndex)
   },
@@ -76,7 +62,7 @@ Page({
     wx.showModal({
       title: '提示',
       content: '你真的要退出答题吗？',
-      success(res) {
+      success: function(res) {
         if (res.confirm) {
           console.log('用户点击确定')
           wx.switchTab({
@@ -114,12 +100,13 @@ Page({
         index: this.data.index + 1
       })
     } else {
-      //是，则将错题号和正确答案一并传入到后面的页面中
       var time = util.formatTime(new Date())
+      //是，则将错题号和正确答案一并传入到后面的页面中
       let date = JSON.stringify(time)
       let wrongList = JSON.stringify(this.data.wrongList);
       let wrongListSort = JSON.stringify(this.data.wrongListSort);
       let chooseValue = JSON.stringify(this.data.chooseValue);
+       
       wx.navigateTo({
         url: '../results/results?totalScore=' + this.data.totalScore + 
         '&wrongList=' + wrongList + '&chooseValue=' + chooseValue + 

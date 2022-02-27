@@ -35,11 +35,15 @@ Page({
           },
           //将试题暂存到本地
           success: function(res){       
-            wx.setStorageSync('question',res.data.questions)
+            let questionList = that.transferOptions(res.data.questions)
+            wx.setStorageSync('question', questionList)
             //导航到答题页面
-            var str = that.data.result+ ''
+            let str = that.data.result+ ''
+            //提取测试名称
+            str = str.replace(/[0-9]/g,'')
+            console.log(str)
             wx.navigateTo({
-            url: '../test/test?testInfo='+ str.substring(1,)
+            url: '../test/test?testInfo='+ str
           });
         },
       });
@@ -52,5 +56,24 @@ Page({
         })
       },
     })
+  },
+
+  //将服务器中的选项数据整合进一个字典，方便test页面渲染
+  transferOptions: function(questionList){
+    let optNames = ['ChoiceA', 'ChoiceB', 'ChoiceC', 'ChoiceD', 'ChoiceE', 'ChoiceF']
+    let alg = ['A', 'B', 'C', 'D', 'E', 'F']
+
+     for(let i=0; i < questionList.length; i++){
+      let option = {}
+      for(let each in optNames){
+        var temp = questionList[i][optNames[each]]
+        if(temp){
+          option[alg[each]] = temp
+        }
+      }
+      questionList[i]['option'] = option
+    }
+    console.log(questionList)
+    return questionList
   }
 })

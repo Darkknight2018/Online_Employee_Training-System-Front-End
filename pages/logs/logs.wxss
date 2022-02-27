@@ -3,7 +3,7 @@
  font-size: 12px;
 }
 .tr {
- display: flex;
+ display: flex; /*row是默认值*/
  width: 100%;
  justify-content: center;
  height: 2rem;

@@ -3,7 +3,7 @@
     <text class = "firstline">登录</text>
     <!--账号-->
     <view class="inputView">
-      <label class="loginLab">员工ID:</label>
+      <label class="loginLab">用户名:</label>
       <input class="inputText" placeholder="请输入账号" bindinput="idInput" />
     </view>
     <!--密码-->
@@ -12,11 +12,19 @@
       <input class="inputText" password="true" placeholder="请输入密码"
       bindinput="passwordInput"/>
     </view>
+
+    <!-- 下拉菜单 -->
+    <view class="selectView">
+      <admin-select prop-array='{{selectArray}}'  bind:select='select' />
+    </view>
+    
     <!--按钮-->
     <view class="loginBtnView">
       <button class="loginBtn" type="primary" size="{{primarySize}}" plain="{{plain}}" 
       disabled = "{{disabled}}" style="background:blue"  bindtap="login">登录</button>
     </view>
+    <view class="registr">注册</view>
+    <view class="forgetpasswd">忘记密码</view>
   </view>
   <image class= "background" style="height:960px" src='../../image/background-login.jpg'></image>
 </view>

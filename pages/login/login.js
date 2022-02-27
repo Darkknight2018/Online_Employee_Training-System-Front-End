@@ -4,6 +4,16 @@ Page({
   data: {
     StaffId: '',
     password: '',
+    index: '0',
+    selectArray:[{
+      "index": "1",
+      "value": "是"
+    },
+    {
+      "index": "0",
+      "value": "否"
+    },
+  ]
   },
 
   //获取输入的ID
@@ -19,6 +29,14 @@ Page({
   passwordInput: function (e) {
     this.setData({
       password: e.detail.value
+    })
+  },
+
+  //选择登录的身份
+  select: function(e) {
+    console.log(e.detail.index)
+    this.setData({
+      index: e.detail.index
     })
   },
 
@@ -43,7 +61,8 @@ Page({
       url: app.globalData.ipAddr + 'login',
       data: {
         StaffId: that.data.StaffId,
-        password: that.data.password
+        password: that.data.password,
+        IfAdmin: this.data.index
       },
       method: 'POST',
       header: {
@@ -53,18 +72,24 @@ Page({
         if(res.data.code == 1){
           wx.switchTab({
             url: '../home/home'
-          })}
-        if(res.data.code == -1){
-          wx.showToast({
-            title: '账号或密码有错误',
+          })
+        }
+        else if(res.data.code == 2){
+          wx.navigateTo({
+            url: '../qrcode/qrcode'
+          })
+        }
+        else{
+          wx.showModal({
+            title: res.data.msg,
             icon: 'none',
             duration: 2000
           })
         }
       },
       fail: function(){
-        wx.showToast({
-          title: '登录失败',
+        wx.showModal({
+          title: '服务器连接失败',
           icon: 'none',
           duration: 2000
         })

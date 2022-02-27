@@ -5,9 +5,7 @@
 .page-head {
   text-align: center;
 }
-.page-title {
 
-}
 .page-score {
   display: flex;
   justify-content: center;

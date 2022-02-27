@@ -7,7 +7,7 @@ Page({
     wrongListSort: [],  // 错误的题数-正序
     chooseValue: [], // 选择的答案
     remark: ["好极了！你很棒棒哦","哎哟不错哦","别灰心，继续努力哦！"], // 评语
-    modalShow: false
+    modalShow: false //是否查看错题的初始值
   },
 
   onLoad: function (options) {
@@ -17,14 +17,16 @@ Page({
     let wrongListSort = JSON.parse(options.wrongListSort);
     let chooseValue = JSON.parse(options.chooseValue);
     let date = JSON.parse(options.date);
-    
+    let questionList = wx.getStorageSync('question')
+  
     this.setData({
       totalScore: options.totalScore != ""?options.totalScore:"无",
       wrongList: wrongList,
       wrongListSort: wrongListSort,
       chooseValue: chooseValue,
       date: date, //测试日期
-      testInfo: options.testInfo  // 测试名称
+      questionList: questionList,
+      testInfo: options.testInfo,  // 测试名称
     })
     console.log(this.data.chooseValue);
 

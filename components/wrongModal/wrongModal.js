@@ -15,9 +15,9 @@ Component({
       value: []
     },
     // 课程ID
-    testId: {
+    testInfo: {
       type: String,
-      value: '101-1'
+      value: ''
     },
     // 题库乱序index
     shuffleIndex: {
