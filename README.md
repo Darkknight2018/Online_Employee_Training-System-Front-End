@@ -1,4 +1,4 @@
-# Online_Employee_Training-System（Front-End）
+# Online-Exam-System（Front-End）
 
 
-+ Portal to the back-end: https://github.com/Darkknight2018/Online_Employee_Training-System-Back-End
++ Portal to the back-end: https://github.com/Nanchen-Li/Online-Exam-System-Back-End
